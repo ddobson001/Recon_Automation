@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<nav class="navbar navbar-dark bg-primary ">
+  <a class="navbar-brand" href="#">LeaseQuery</a>
+</nav>
+<body>   
+    <div class="container-fluid">
+        <div class="row p-3">
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Client Month 1</h5>
+                    <p class="card-text">CSV will insert into mySql Database.</p>
+                    <form method= "POST" action="/populateDb1" action="/populateDb1">
+                      <input type="submit" value="Submit Client Month 1" class="btn btn-info" id="submit">
+                  </form>                
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Client Month 2</h5>
+                    <p class="card-text">CSV will insert into mySql Database.</p>
+                    <form method="POST" action='/populateDb2'>
+                      <input type="submit" value="Submit Client Month 2" class="btn btn-info" id="submit">
+                      </form>
+                </div>
+              </div>
+            </div>
+          <div class="col-sm-4">
+              <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title">Client Month 3</h5>
+                    <p class="card-text">CSV will insert into mySql Database.</p>
+                    <form method="POST" action='/populateDb3'>
+                      <input type="submit" value="Submit Client Month 3" class="btn btn-info" id="submit">
+                      </form>          
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-sm-4">
+                <div class="card ">
+                  <div class="card-body">
+                      <h5 class="card-title">LeaseQuery Month 1</h5>
+                      <p class="card-text">CSV will insert into mySql Database.</p>
+                      <form method="POST" action='/populateLqDb1'>
+                        <input type="submit" value="Submit Lq Month 1" class="btn btn-info" id="submit">
+                    </form>                      
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                  <div class="card ">
+                    <div class="card-body">
+                        <h5 class="card-title">LeaseQuery Month 2</h5>
+                        <p class="card-text">CSV will insert into mySql Database.</p>
+                        <form method="POST" action='/populateLqDb2'>
+                          <input type="submit" value="Submit Lq Month 2" class="btn btn-info" id="submit">
+                        </form>                    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card ">
+                      <div class="card-body">
+                          <h5 class="card-title">LeaseQuery Month 3</h5>
+                          <p class="card-text">CSV will insert into mySql Database.</p>
+                          <form method="POST" action='/populateLqDb3'>
+                            <input type="submit" value="Submit Lq Month 3" class="btn btn-info" id="submit">
+                          </form>                       
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                      <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title">Reconciliation for Month 1</h5>
+                            <p class="card-text">Export Month 1 Reconciliation.</p>
+                            <form method="POST" action='/exportResultMonth1'>
+                              <input type="submit" value="Export Month 1" class="btn btn-info" id="submit">
+                          </form>                    
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="col-sm-4">
+                        <div class="card ">
+                          <div class="card-body">
+                              <h5 class="card-title">Reconciliation of Month 2</h5>
+                              <p class="card-text">Export Month 2 Reconciliation.</p>
+                              <form method="POST" action='/exportResultMonth2'>
+                                <input type="submit" value="Export Month 2" class="btn btn-info" id="submit">
+                            </form>                        
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="col-sm-4">
+                          <div class="card ">
+                            <div class="card-body">
+                                <h5 class="card-title">Reconciliation for Month 3</h5>
+                                <p class="card-text">Export Month 3 Reconciliation.</p>
+                                <form method="POST" action='/exportResultMonth3'>
+                                  <input type="submit" value="Export Month 3" class="btn btn-info" id="submit">
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div class="col-sm-4">
+                            <div class="card ">
+                              <div class="card-body">
+                                  <h5 class="card-title">File Upload</h5>
+                                  <form class="fileupload" action="upload" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="upfile" value="">
+                                    <input type="submit" />
+                                  </form>
+                              </div>
+                            </div>
+                          </div>
+          </div>
+ </div>
+     
+    
+      <!-- Footer -->
+<footer class="page-footer footer-dark bg-primary font-small">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright: LeaseQuery
+      <a href=""></a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./upload.js">
+  </script>
+
+</body>
+</html>
