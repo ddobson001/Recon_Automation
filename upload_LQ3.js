@@ -5,13 +5,18 @@ const csv = require('fast-csv');
 const populateLqDb3 = () => {
 	const mysql = require('mysql')
 
-	const connection = mysql.createConnection({
+	if (process.env.JAWSDB_URL){
+		// Database is JawsDB on Heroku
+		connection = mysql.createConnection(process.env.JAWSDB_URL)
+	}else{
+	    connection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
 		password: 'root',
 		database: 'testdb',
 		
 	});
+	}
 
 	let updatedData = [];
 	let headerDatas = []
