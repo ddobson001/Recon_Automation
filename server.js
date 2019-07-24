@@ -20,7 +20,7 @@ let exportResultMonth3 = require('./export/queryMonth3')
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 
 
