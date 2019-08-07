@@ -7,11 +7,7 @@ var upload = require('express-fileupload');
 const http = require('http');
 var aws = require('aws-sdk')
 require('dotenv').config();
-
-var s3 = new aws.S3()
  
-
-
 var populateDb1 = require('./upload');
 var populateDb2 = require('./upload2');
 var populateDb3 = require('./upload3');
@@ -21,16 +17,6 @@ var populateLqDb3 = require('./upload_LQ3');
 let exportResultMonth1 = require('./export/queryMonth1')
 let exportResultMonth2 = require('./export/queryMonth2')
 let exportResultMonth3 = require('./export/queryMonth3')
-
-
-
-// import entire SDK
-var AWS = require('aws-sdk');
-// import AWS object without services
-var AWS = require('aws-sdk/global');
-// import individual service
-var S3 = require('aws-sdk/clients/s3');
-
 
 // Sets up the Express App
 
@@ -129,49 +115,4 @@ app.post('/upload',function(req,res){
 // =============================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
-});
-
-
-////test to see if upload works 
-app.set('views', './views');
-app.use(express.static('./public'));
-app.engine('html', require('ejs').renderFile);
-
-aws.config.region = 'us-east-2';
-
-const S3_BUCKET = process.env.BUCKET;
-
-app.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
-  const fileType = req.query['file-type'];
-  const s3Params = {
-    Bucket: S3_BUCKET,
-    Key: fileName,
-    Expires: 60,
-    ContentType: fileType,
-    ACL: 'public-read'
-  };
-
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-    };
-    res.write(JSON.stringify(returnData));
-    res.end();
-  });
-});
-
-/*
- * Respond to POST requests to /submit_form.
- * This function needs to be completed to handle the information in
- * a way that suits your application.
- */
-app.post('/save-details', (req, res) => {
-  // TODO: Read POSTed form data and do something useful
 });
