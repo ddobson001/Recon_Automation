@@ -37,7 +37,7 @@ const reconQuery = 'SELECT T1.Database_ID, Lease_Description, SUM(BR_Current_Mon
 
          
           // Write to File
-          workbook.xlsx.writeFile("month2.xlsx")
+          workbook.xlsx.writeFile("./upload/month2.xlsx")
           .then(function() {
             console.log("file saved!");
           });

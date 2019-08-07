@@ -7,7 +7,6 @@
     <title>Document</title>  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="/public/style.css">
 </head>
 <nav class="navbar navbar-dark bg-primary ">
@@ -21,7 +20,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Client Month 1</h5>
                     <p class="card-text">CSV will insert into mySql Database.</p>
-                    <form method= "POST" action="/populateDb1" action="/populateDb1">
+                    <form method= "POST" action="/populateDb1" action="/populateDb">
                       <input type="submit" value="Submit Client Month 1" class="btn btn-info" id="submit">
                   </form>                
                 </div>
@@ -91,43 +90,19 @@
                         <div class="card-body">
                             <h5 class="card-title">Reconciliation for Month 1</h5>
                             <p class="card-text">Export Month 1 Reconciliation.</p>
-                            <form method="POST" action='/exportResultMonth1'>
+                            <form method="POST" action='/exportResultMonth'>
                               <input type="submit" value="Export Month 1" class="btn btn-info" id="submit">
                           </form>                    
                         </div>
                       </div>
                     </div>
           
-                    <div class="col-sm-4">
-                        <div class="card ">
-                          <div class="card-body">
-                              <h5 class="card-title">Reconciliation of Month 2</h5>
-                              <p class="card-text">Export Month 2 Reconciliation.</p>
-                              <form method="POST" action='/exportResultMonth2'>
-                                <input type="submit" value="Export Month 2" class="btn btn-info" id="submit">
-                            </form>                        
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="col-sm-4">
-                          <div class="card ">
-                            <div class="card-body">
-                                <h5 class="card-title">Reconciliation for Month 3</h5>
-                                <p class="card-text">Export Month 3 Reconciliation.</p>
-                                <form method="POST" action='/exportResultMonth3'>
-                                  <input type="submit" value="Export Month 3" class="btn btn-info" id="submit">
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-          
                         <div class="col-sm-4">
                             <div class="card ">
                               <div class="card-body">
                                   <h5 class="card-title">File Upload</h5>
-                                  <form class="fileupload" action="upload" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="upfile" value="">
+                                  <form class="fileupload" action="upload" method="post" enctype="multipart/form-data" id='uploader'>
+                                    <input type="file" name="upfile" required value="" id='fileButton' >
                                     <input type="submit" />
                                   </form>
                               </div>
@@ -135,8 +110,24 @@
                           </div>
           </div>
  </div>
-     
-    
+
+
+<input type="file" id="file-input">
+    <p id="status">Please select a file</p>
+
+    <form method="POST" action="/save-details">
+      <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
+      <input type="text" name="username" placeholder="Username"><br>
+      <input type="text" name="full-name" placeholder="Full name"><br><br>
+
+      <input type="submit" value="Update profile">
+    </form>
+
+
+
+
+
+
       <!-- Footer -->
 <footer class="page-footer footer-dark bg-primary font-small">
 
@@ -157,5 +148,65 @@
     <script src="./upload.js">
   </script>
 
+<script>
+  /*
+    Function to carry out the actual PUT request to S3 using the signed request from the app.
+  */
+  function uploadFile(file, signedRequest, url){
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          document.getElementById('preview').src = url;
+          document.getElementById('avatar-url').value = url;
+        }
+        else{
+          alert('Could not upload file.');
+        }
+      }
+    };
+    xhr.send(file);
+  }
+  /*
+    Function to get the temporary signed request from the app.
+    If request successful, continue to upload the file using this signed
+    request.
+  */
+  function getSignedRequest(file){
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          const response = JSON.parse(xhr.responseText);
+          uploadFile(file, response.signedRequest, response.url);
+        }
+        else{
+          alert('Could not get signed URL.');
+        }
+      }
+    };
+    xhr.send();
+  }
+  /*
+   Function called when file input updated. If there is a file selected, then
+   start upload procedure by asking for a signed request from the app.
+  */
+  function initUpload(){
+    const files = document.getElementById('file-input').files;
+    const file = files[0];
+    if(file == null){
+      return alert('No file selected.');
+    }
+    getSignedRequest(file);
+  }
+  /*
+   Bind listeners when the page loads.
+  */
+  (() => {
+      document.getElementById('file-input').onchange = initUpload;
+  })();
+  </script>
 </body>
 </html>

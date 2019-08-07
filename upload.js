@@ -1,5 +1,7 @@
 const fs = require('fs');
 const csv = require('fast-csv');
+require('dotenv').config();
+
 
 
 const populateDb1 = () => {
@@ -29,7 +31,7 @@ const populateDb1 = () => {
 	let dataArr = [];
 
 
-	csv.parseFile("CD 1.csv", { headers: true, skip_blanks: true
+	csv.parseFile('./upload/CD 1.csv', { headers: true, skip_blanks: true
 	})
 
 		.on("data", data => {
@@ -38,7 +40,7 @@ const populateDb1 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	let stream = fs.createReadStream("CD 1.csv")	
+	stream = fs.createReadStream('./upload/CD 1.csv')	
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {

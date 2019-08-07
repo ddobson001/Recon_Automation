@@ -33,7 +33,7 @@ const reconQuery = 'SELECT T1.Database_ID, Lease_Description, SUM(BR_Current_Mon
           worksheet.addRows(jsonReconData);
           
           // Write to File
-          workbook.xlsx.writeFile("month1.xlsx")
+          workbook.xlsx.writeFile("./upload/month1.xlsx")
           .then(function() {
             console.log("file saved!");
           });

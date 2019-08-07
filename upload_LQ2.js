@@ -1,5 +1,6 @@
 const fs = require('fs');
 const csv = require('fast-csv');
+require('dotenv').config();
 
 
 const populateLqDb2 = () => {
@@ -27,7 +28,7 @@ const populateLqDb2 = () => {
 	let dataArr = [];
 
 
-	csv.parseFile("LQ 2.csv", { headers: true, skip_blanks: true
+	csv.parseFile('./upload/LQ 2.csv', { headers: true, skip_blanks: true
 	})
 
 		.on("data", data => {
@@ -36,7 +37,7 @@ const populateLqDb2 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	let stream = fs.createReadStream("LQ 2.csv")	
+	let stream = fs.createReadStream('./upload/LQ 2.csv')	
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {
