@@ -24,7 +24,7 @@ let exportResultMonth3 = require('./export/queryMonth3')
 
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 3000;
 
 app.use(upload())
 
@@ -120,6 +120,6 @@ app.post('/upload',function(req,res){
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
