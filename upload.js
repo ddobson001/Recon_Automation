@@ -5,6 +5,7 @@ require('dotenv').config();
 
 
 const populateDb1 = () => {
+
 	const mysql = require('mysql')
 
 	if (process.env.JAWSDB_URL){
@@ -31,7 +32,7 @@ const populateDb1 = () => {
 	let dataArr = [];
 
 
-	csv.parseFile('./upload/CD 1.csv', { headers: true, skip_blanks: true
+	csv.parseFile(require('path').join(require('os').homedir(), 'Desktop/upload/CD 1.csv'), { headers: true, skip_blanks: true
 	})
 
 		.on("data", data => {
@@ -40,7 +41,7 @@ const populateDb1 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	stream = fs.createReadStream('./upload/CD 1.csv')	
+	let stream = fs.createReadStream(require('path').join(require('os').homedir(), 'Desktop/upload/CD 1.csv'))	
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {

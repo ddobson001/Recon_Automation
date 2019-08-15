@@ -18,6 +18,9 @@ let exportResultMonth1 = require('./export/queryMonth1')
 let exportResultMonth2 = require('./export/queryMonth2')
 let exportResultMonth3 = require('./export/queryMonth3')
 
+let uploadFile = require('./aws_upload')
+
+
 // Sets up the Express App
 
 // =============================================================
@@ -83,6 +86,11 @@ app.post('/exportResultMonth', (req, res) => {
   res.redirect('/');
 });
 
+
+app.post('/uploadFile',function(req,res){
+  console.log(req.files);
+ uploadFile()
+})
 
 app.post('/upload',function(req,res){
   console.log(req.files);

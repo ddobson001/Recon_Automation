@@ -14,6 +14,7 @@
     "body-parser": "^1.19.0",
     "csv": "^5.1.1",
     "csv-parse": "^4.4.3",
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.2",
     "eol": "^0.9.1",
@@ -21,12 +22,15 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "fast-csv": "^3.0.1",
+    "googleapis": "^39.2.0",
     "multer-s3": "^2.9.0",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
     "require": "^2.4.20",
+    "s3-streams": "^0.4.0",
     "sequelize": "^5.8.12",
+    "streaming-s3": "^0.4.4",
     "uuid": "^3.3.2"
   }
 }
