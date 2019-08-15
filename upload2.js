@@ -54,7 +54,7 @@ const populateDb2 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	let stream = fs.createReadStream('./file')	
+	 stream = fs.createReadStream('./file')	
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {
