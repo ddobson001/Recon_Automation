@@ -1,9 +1,26 @@
 const fs = require('fs');
 const csv = require('fast-csv');
 require('dotenv').config();
+const AWS = require('aws-sdk');
+require('dotenv').config();
+
+const S3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESSKEYID,
+    secretAccessKey: process.env.AWS_AMAZON_SECRET_KEY ,
+    region:'us-east-2'
+});
+var file = require('fs').createWriteStream('./file');
+
+const params = {
+    Bucket: 'lqrecon',
+      Key: 'LQ 3.csv',
+  };
+  
+  var stream = S3.getObject(params).createReadStream().pipe(file)
 
 
-const populateDb3 = () => {
+const populateLqDb3 = () => {
+
 	const mysql = require('mysql')
 
 	if (process.env.JAWSDB_URL){
@@ -18,7 +35,7 @@ const populateDb3 = () => {
 		
 	});
 	}
-	
+
 	let updatedData = [];
 	let headerDatas = []
 	let orginalHeaderDatas = [];
@@ -30,7 +47,8 @@ const populateDb3 = () => {
 	let dataArr = [];
 
 
-	csv.parseFile('./upload/CD 3.csv', { headers: true, skip_blanks: true
+	csv
+	.parseFile('./file', { headers: true, skip_blanks: true
 	})
 
 		.on("data", data => {
@@ -39,7 +57,7 @@ const populateDb3 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	let stream = fs.createReadStream('./upload/CD 3.csv')	
+	stream = fs.createReadStream('./file')
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {
@@ -100,10 +118,10 @@ const populateDb3 = () => {
 					console.error(error);
 				} else {
 					
-					let dropTable = 'DROP TABLE IF EXISTS `CD 3`'
-					let createTable = 'CREATE TABLE `CD 3`' + '(' + headersWithProperties + ')'
+					let dropTable = 'DROP TABLE IF EXISTS `LQ 3`'
+					let createTable = 'CREATE TABLE `LQ 3`' + '(' + headersWithProperties + ')'
 					
-					let insertData = 'INSERT INTO `CD 3` ' + '(' + correctHeaderFormat + ') ' + 'VALUES ?'
+					let insertData = 'INSERT INTO `LQ 3` ' + '(' + correctHeaderFormat + ') ' + 'VALUES ?'
 					//drop table
 					connection.query(dropTable, (error, response) => {
 						console.log("bottom" + connection.query)
@@ -133,7 +151,7 @@ const populateDb3 = () => {
 			});
 }
 
-module.exports = populateDb3;
+module.exports = populateLqDb3;
 	
 	
 		

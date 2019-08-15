@@ -1,9 +1,26 @@
 const fs = require('fs');
 const csv = require('fast-csv');
 require('dotenv').config();
+const AWS = require('aws-sdk');
+require('dotenv').config();
+
+const S3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESSKEYID,
+    secretAccessKey: process.env.AWS_AMAZON_SECRET_KEY ,
+    region:'us-east-2'
+});
+var file = require('fs').createWriteStream('./file');
+
+const params = {
+    Bucket: 'lqrecon',
+      Key: 'LQ 1.csv',
+  };
+  
+  var stream = S3.getObject(params).createReadStream().pipe(file)
 
 
 const populateLqDb1 = () => {
+
 	const mysql = require('mysql')
 
 	if (process.env.JAWSDB_URL){
@@ -19,7 +36,6 @@ const populateLqDb1 = () => {
 	});
 	}
 
-
 	let updatedData = [];
 	let headerDatas = []
 	let orginalHeaderDatas = [];
@@ -31,7 +47,8 @@ const populateLqDb1 = () => {
 	let dataArr = [];
 
 
-	csv.parseFile('./upload/LQ 1.csv', { headers: true, skip_blanks: true
+	csv
+	.parseFile('./file', { headers: true, skip_blanks: true
 	})
 
 		.on("data", data => {
@@ -40,7 +57,7 @@ const populateLqDb1 = () => {
 
 		.on("end", () => {
 	// captures all data in CSV
-	let stream = fs.createReadStream('./upload/LQ 1.csv')	
+	stream = fs.createReadStream('./file')
 	let csvStream = csv
 		.parse({ ignoreEmpty: true })
 		.on("data", function (data) {
@@ -137,3 +154,4 @@ const populateLqDb1 = () => {
 module.exports = populateLqDb1;
 	
 	
+		
