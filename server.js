@@ -18,7 +18,6 @@ let exportResultMonth1 = require('./export/queryMonth1')
 let exportResultMonth2 = require('./export/queryMonth2')
 let exportResultMonth3 = require('./export/queryMonth3')
 
-let uploadFile = require('./aws_upload')
 
 
 // Sets up the Express App
