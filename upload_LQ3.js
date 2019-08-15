@@ -4,23 +4,23 @@ require('dotenv').config();
 const AWS = require('aws-sdk');
 require('dotenv').config();
 
-const S3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESSKEYID,
-    secretAccessKey: process.env.AWS_AMAZON_SECRET_KEY ,
-    region:'us-east-2'
-});
-var file = require('fs').createWriteStream('./file');
 
-const params = {
-    Bucket: 'lqrecon',
-      Key: 'LQ 3.csv',
-  };
-  
-  var stream = S3.getObject(params).createReadStream().pipe(file)
 
 
 const populateLqDb3 = () => {
-
+	const S3 = new AWS.S3({
+		accessKeyId: process.env.AWS_ACCESSKEYID,
+		secretAccessKey: process.env.AWS_AMAZON_SECRET_KEY ,
+		region:'us-east-2'
+	});
+	var file = require('fs').createWriteStream('./file');
+	
+	const params = {
+		Bucket: 'lqrecon',
+		  Key: 'LQ 3.csv',
+	  };
+	  
+	  var stream = S3.getObject(params).createReadStream().pipe(file)
 	const mysql = require('mysql')
 
 	if (process.env.JAWSDB_URL){
