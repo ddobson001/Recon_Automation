@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "upload.js",
-  "engines": {
-    "node": "10.5.0"
+  "scripts": {
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "fast-csv": "^3.0.1",
+    "googleapis": "^39.2.0",
     "multer-s3": "^2.9.0",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
