@@ -88,10 +88,22 @@
                   <div class="col-sm-4">
                       <div class="card ">
                         <div class="card-body">
-                            <h5 class="card-title">Reconciliation for Month 1</h5>
-                            <p class="card-text">Export Month 1 Reconciliation.</p>
+                            <h5 class="card-title">Reconciliation</h5>
+                            <p class="card-text">Export Reconciliation.</p>
                             <form method="POST" action='/exportResultMonth'>
                               <input type="submit" value="Export Month 1" class="btn btn-info" id="submit">
+                          </form>                    
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="col-sm-4">
+                      <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title">Reset Database</h5>
+                            <p class="card-text">Drop all Exsisting Tables</p>
+                            <form method="POST" action='/dropAllTables'>
+                              <input type="submit" value="Drop Tables" class="btn btn-info" id="submit">
                           </form>                    
                         </div>
                       </div>

@@ -17,6 +17,7 @@ var populateLqDb3 = require('./upload_LQ3');
 let exportResultMonth1 = require('./export/queryMonth1')
 let exportResultMonth2 = require('./export/queryMonth2')
 let exportResultMonth3 = require('./export/queryMonth3')
+let dropAllTables = require('./dropTable')
 
 
 
@@ -38,6 +39,14 @@ app.use(express.static(path.join(__dirname, './public/style.css')));
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, './app/views/index.html'));
 });
+
+app.post('/dropAllTables', (req, res) => {
+  dropAllTables();
+
+  //alert ('Data Uploaded')
+  res.redirect('/');
+});
+
 
 app.post('/populateLqDb1', (req, res) => {
   populateLqDb1();
