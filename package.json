@@ -1,7 +1,7 @@
 {
   "name": "uploadcsv",
   "version": "1.0.0",
-  "description": "",
+  "description": "Reads CSV File, imports data into MySQL and exports Recon to Excel",
   "main": "upload.js",
   "scripts": {
     "start": "node server.js"
@@ -33,5 +33,15 @@
     "streaming-s3": "^0.4.4",
     "url-parse": "^1.4.7",
     "uuid": "^3.3.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddobson001/Recon_Automation.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ddobson001/Recon_Automation/issues"
+  },
+  "homepage": "https://github.com/ddobson001/Recon_Automation#readme"
 }
