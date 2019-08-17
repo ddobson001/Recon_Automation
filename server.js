@@ -25,7 +25,6 @@ let dropAllTables = require('./dropTable')
 
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8000;
 
 app.use(upload())
 
@@ -129,6 +128,8 @@ app.post('/upload',function(req,res){
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+
+var server = app.listen(process.env.PORT || 5000, function () {
+  var port = server.address().port;
+  console.log("Express is working on port " + port);
 });
