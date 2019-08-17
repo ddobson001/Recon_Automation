@@ -2,7 +2,7 @@
   "name": "uploadcsv",
   "version": "1.0.0",
   "description": "Reads CSV File, imports data into MySQL and exports Recon to Excel",
-  "main": "upload.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
