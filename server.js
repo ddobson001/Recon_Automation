@@ -3,7 +3,6 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require('body-parser');
-var upload = require('express-fileupload');
 const http = require('http');
 var aws = require('aws-sdk')
 require('dotenv').config();

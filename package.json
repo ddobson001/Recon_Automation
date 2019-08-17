@@ -1,5 +1,5 @@
 {
-  "name": "uploadcsv",
+  "name": "recon_automation",
   "version": "1.0.0",
   "description": "Reads CSV File, imports data into MySQL and exports Recon to Excel",
   "main": "server.js",
