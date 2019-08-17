@@ -26,7 +26,6 @@ let dropAllTables = require('./dropTable')
 // =============================================================
 var app = express();
 
-
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -91,35 +90,6 @@ app.post('/exportResultMonth', (req, res) => {
   res.redirect('/');
 });
 
-
-app.post('/uploadFile',function(req,res){
-  console.log(req.files);
- uploadFile()
-})
-
-app.post('/upload',function(req,res){
-  console.log(req.files);
-  if(req.files.upfile){
-    var file = req.files.upfile,
-      name = file.name,
-      type = file.mimetype;
-    var uploadpath = __dirname + '/upload/' + name; //local file system on sever 
-    file.mv(uploadpath,function(err){
-      if(err){
-        console.log("File Upload Failed",name,err);
-        res.send("Error Occured!")
-      }
-      else {
-        console.log("File Uploaded",name);
-        res.redirect('/');
-      }
-    });
-  }
-  else {
-    res.send("No File selected !");
-    res.end();
-  };
-})
 
 // Routes
 // =============================================================
