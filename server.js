@@ -26,7 +26,6 @@ let dropAllTables = require('./dropTable')
 // =============================================================
 var app = express();
 
-app.use(upload())
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +40,6 @@ app.get("/", function(req, res) {
 
 app.post('/dropAllTables', (req, res) => {
   dropAllTables();
-
   //alert ('Data Uploaded')
   res.redirect('/');
 });
