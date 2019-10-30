@@ -30,7 +30,7 @@
     "request": "^2.88.0",
     "require": "^2.4.20",
     "s3-streams": "^0.4.0",
-    "sequelize": "^5.8.12",
+    "sequelize": "^5.15.1",
     "streaming-s3": "^0.4.4",
     "url-parse": "^1.4.7",
     "uuid": "^3.3.2"
